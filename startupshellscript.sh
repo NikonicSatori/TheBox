@@ -183,6 +183,8 @@ git pull origin main
 
 
 
+
+
 # (ssh key and clone)
 # generate a new key pair (add the public key to github profile)
 ssh-keygen -t ed25519 -C "id_ed25519_git" -f ~/.ssh/id_ed25519_git -N ""
@@ -194,6 +196,10 @@ echo -e 'Host github.com\n\tHostName github.com\n\tIdentityFile ~/.ssh/id_ed2551
 # Clone Satoshi Palace Repo
 #git clone -b patrick-nft git@github.com:SatoshisPalace/satoshisPalaceFrontEnd.git
 #git clone git@github.com:SatoshisPalace/discord-bot.git
+
+
+
+
 
 # -- SETUP NODEJS --
 install nodejs -y
