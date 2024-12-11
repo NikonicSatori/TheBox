@@ -1,0 +1,48 @@
+logging into aws instance
+
+identify file
+ssh -i "C:\Users\NickL\OneDrive\Documents\archived 2023\aws\keys\original-rsa_2023-07-15.pem" root@18.117.146.122
+
+copy file from local machine to remote aws instance, while specifying identify file
+scp -i "C:\Users\NickL\OneDrive\Documents\archived 2023\aws\keys\original-rsa_2023-07-15.pem" "C:\Users\NickL\OneDrive\Documents\archived 2023\aws\keys\original-rsa_2023-07-15.pem" ec2-user@18.117.146.122:~
+
+
+ssh -i "C:\Users\NickL\OneDrive\Documents\archived 2023\aws\keys\original-rsa_2023-07-15.pem" ec2-user@18.117.146.122
+
+scp -i "C:\Users\NickL\OneDrive\Documents\archived 2023\aws\keys\original-rsa_2023-07-15.pem" "C:\Users\NickL\Downloads\satoshisPalaceFrontEnd-PROD.zip" ec2-user@18.117.146.122:~
+
+
+===== install needed packages =====
+
+- centos -
+yum install git
+
+- ubuntu -
+apt-get install git
+
+===== 
+
+===== to git clone =====
+
+1. gen new key pair and add public key to github profile
+	ssh-keygen -t ed25519 -C "patricktipton87@proton.me"
+2. specify pem in ~/.ssh/config
+
+	[ec2-user@ip-172-31-13-182 .ssh]$ cat config
+	Host github.com
+	        HostName github.com
+	        IdentityFile ~/.ssh/id_rsa_git
+	        User git
+3. git clone! done.
+	git clone git@github.com:SatoshisPalace/satoshisPalaceFrontEnd.git
+
+=====
+
+in ec2 instance, create the dev env
+sudo dnf install nodejs
+sudo dnf install npm
+
+npm install
+npm run dev
+
+@ethangoldsteinberg @chrono.wave the more i test around, the more i'm convinced it's a firewall denying ICMP/pings. this is likely not fixable in the webserver.mjs because the node/host's firewall is blocking it -- if someone has access to the the host's shell/os then can they check firewall  ```firewall-cmd --list-all```  or ufw/firewalld equivalent and add an explicit icmp allow rule (maybe only for my static host address 3.133.127.240)? it's that or hostinger's security rules in getting in the way. it's probably that - please add an ```allow icmp``` rule explicitly in Hostinger/aws

@@ -1,0 +1,12 @@
+
+
+if you want to pull remote to local after making unwanted local changes, do this: 
+
+git checkout <branch-name>
+git fetch origin
+git reset --hard origin/patrick-nft
+git clean -df
+	git clean -df removes untracked files and directories from your working directory (-d for directories and -f for force). This
+
+
+
