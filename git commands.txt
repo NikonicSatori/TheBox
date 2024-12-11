@@ -1,9 +1,13 @@
 # Start on dev branch for dev work
 git checkout -b dev
+git branch -a
 
 # Once changes are complete, merge them into main
 git checkout main
 git merge dev
+
+# If you're done with a feature or task, delete the dev branch
+git branch -d dev
 
 
 
